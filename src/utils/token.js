@@ -10,9 +10,10 @@ function getToken() {
   let token = localStorage.getItem('token')
   if (token) {
     const payload = JSON.parse(atob(token.split('.')[1]))
-    console.log(payload)
-    // check to see if token is expired and if so remove token from localstorage
-    // and set token to null
+    if (payload.exp < Date.now() / 1000) {
+      removeToken()
+      token = null
+    }
   }
   return token;
 }

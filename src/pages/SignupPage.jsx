@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import userUtil from '../utils/user.js'
+
+import usersUtil from '../utils/users.js'
+import ErrorMessage from '../components/ErrorMessage.jsx'
 
 export default function SignupPage({setUser}) {
   const [form, setForm] = useState({
@@ -10,6 +12,8 @@ export default function SignupPage({setUser}) {
     password: '',
     passwordConfirm: '',
   })
+
+  const [error, setError] = useState('')
 
   const navigate = useNavigate();
 
@@ -23,13 +27,15 @@ export default function SignupPage({setUser}) {
   async function handleSubmit(event) {
     event.preventDefault()
     try {
-      await userUtil.signup(form)
-      setUser(userUtil.getUser())
+      await usersUtil.signup(form)
+      setUser(usersUtil.getUser())
       navigate('/')
     } catch (error) {
-      
+      console.log(error)
+      setError('Error!!')
     }
   }
+  
   return (
     <>
       <div>SignupPage</div>
@@ -70,6 +76,7 @@ export default function SignupPage({setUser}) {
           required
         />
         <button type='submit'>Signup</button>
+        {error ? <ErrorMessage error={error} /> : null}
       </form>
     </>
   )
