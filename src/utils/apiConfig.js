@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const jwt = null
+import tokenUtil from './token.js'
+
+const jwt = tokenUtil.getToken() || null
 
 const apiUrls = {
   development: 'http://localhost:3001/api',
@@ -11,7 +13,7 @@ const api = axios.create({
   baseURL: window.location.hostname === 'localhost' ? apiUrls.development : apiUrls.production,
   headers: {
       Authorization: `Bearer ${jwt}`,
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
   }
 })
 
