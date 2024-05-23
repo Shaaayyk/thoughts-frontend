@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 import usersUtil from '../utils/users.js'
 import ErrorMessage from '../components/ErrorMessage.jsx'
@@ -76,6 +76,7 @@ export default function SignupPage({setUser}) {
           required
         />
         <button type='submit'>Signup</button>
+        <p>Already have an account? <Link to='/login'>Log in here</Link></p>
         {error ? <ErrorMessage error={error} /> : null}
       </form>
     </>

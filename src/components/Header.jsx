@@ -1,7 +1,17 @@
-import React from 'react'
+import { Link } from "react-router-dom"
 
-export default function Header() {
+export default function Header({user, handleLogout}) {
   return (
-    <div>Header</div>
+    <>
+      <Link to='/'>Home</Link>
+      {
+        user ?
+          <>
+            <h4>Hello, {user.firstName}</h4>
+            <Link to='' onClick={handleLogout}>Logout</Link>
+          </>
+        : null
+      }
+    </>
   )
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 import thoughtsUtil from '../utils/thoughts.js'
 import ErrorMessage from '../components/ErrorMessage.jsx'
@@ -26,7 +27,10 @@ export default function FeedPage({ user }) {
       {
         thoughts.length ?
           thoughts.map(thought => (
-            <div key={thought._id}></div>
+            <div key={thought._id}>
+              <h3>{thought.title}</h3>
+              <p>{thought.content}</p>
+            </div>
           ))
           :
           <p>Add a thought?</p>
