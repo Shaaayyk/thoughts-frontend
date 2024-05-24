@@ -33,7 +33,7 @@ export default function FeedPage({ user }) {
             </div>
           ))
           :
-          <p>Add a thought?</p>
+          <p>Want to add a thought? <Link to='/thought-creation'>Click here</Link></p>
       }
     </>
   )

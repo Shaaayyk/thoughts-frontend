@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
+import SignupPage from "./pages/SignupPage";
+import LoginPage from "./pages/LoginPage.jsx";
 import Layout from "./layouts/Layout";
 import HomePage from "./pages/HomePage.jsx";
 import FeedPage from "./pages/FeedPage";
-import SignupPage from "./pages/SignupPage";
-import LoginPage from "./pages/LoginPage.jsx";
+import ThoughtForm from "./pages/ThoughtForm.jsx";
 
 import usersUtil from "./utils/users.js";
 
@@ -33,6 +34,7 @@ function App() {
         <Route path="/" element={<Layout user={user} handleLogout={handleLogout} />}>
           <Route index element={<HomePage user={user} />} />
           <Route path="/feed" element={<FeedPage user={user} />} />
+          <Route path="/thought-creation" element={<ThoughtForm user={user} />} />
         </Route>
         <Route path="/signup" element={<SignupPage setUser={setUser} />} />
         <Route path="/login" element={<LoginPage setUser={setUser} />} />

@@ -1,26 +1,25 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Grid,
   Header,
   Segment,
   Form,
   Button,
-  Message,
 } from "semantic-ui-react";
 
 import ErrorMessage from "../components/ErrorMessage.jsx";
-import usersUtil from "../utils/users.js";
+import thoughtsUtil from "../utils/thoughts.js";
 
-export default function LoginPage({ setUser }) {
+export default function ThoughtForm({}) {
   const [form, setForm] = useState({
-    email: "",
-    password: "",
+    title: "",
+    content: "",
   });
 
   const [error, setError] = useState("");
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   function handleChange(event) {
     setForm({
@@ -32,9 +31,8 @@ export default function LoginPage({ setUser }) {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      await usersUtil.login(form);
-      setUser(usersUtil.getUser());
-      navigate("/");
+      const response = await thoughtsUtil.addThought(form);
+      navigate('/feed')
     } catch (error) {
       console.log(error);
       setError("Error!!");
@@ -43,34 +41,27 @@ export default function LoginPage({ setUser }) {
 
   return (
     <>
-      <Grid
-        textAlign="center"
-        verticalAlign="middle"
-        style={{ height: "100vh" }}
-      >
-        <Grid.Column style={{ maxWidth: 450 }}>
-          <Header>LoginPage</Header>
+      <Grid textAlign="center" verticalAlign="middle" style={{ height: '90vh'}}>
+        <Grid.Column style={{ width: 450 }}>
+          <Header>ThoughtForm</Header>
           <Form onSubmit={handleSubmit} autoComplete="off">
             <Segment>
               <Form.Input
-                type="email"
-                name="email"
-                placeholder="Email"
+                type="text"
+                name="title"
+                placeholder="Name your thought"
                 onChange={handleChange}
                 required
               />
-              <Form.Input
-                type="password"
-                name="password"
-                placeholder="Password"
+              <Form.TextArea
+                type="text"
+                name="content"
+                placeholder="Write it out..."
                 onChange={handleChange}
                 required
               />
-              <Button type="submit">Signup</Button>
+              <Button type="submit">Save your thought</Button>
             </Segment>
-            <Message>
-              New to the site? <Link to="/signup">Sign up here</Link>
-            </Message>
             {error ? <ErrorMessage error={error} /> : null}
           </Form>
         </Grid.Column>
