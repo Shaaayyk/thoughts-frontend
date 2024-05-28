@@ -7,6 +7,7 @@ import Layout from "./layouts/Layout";
 import HomePage from "./pages/HomePage.jsx";
 import FeedPage from "./pages/FeedPage";
 import ThoughtForm from "./pages/ThoughtForm.jsx";
+import ThoughtPage from "./pages/ThoughtPage.jsx";
 
 import usersUtil from "./utils/users.js";
 
@@ -35,6 +36,7 @@ function App() {
           <Route index element={<HomePage user={user} />} />
           <Route path="/feed" element={<FeedPage user={user} />} />
           <Route path="/thought-creation" element={<ThoughtForm user={user} />} />
+          <Route path="/thoughts/:id" element={<ThoughtPage user={user} />} />
         </Route>
         <Route path="/signup" element={<SignupPage setUser={setUser} />} />
         <Route path="/login" element={<LoginPage setUser={setUser} />} />

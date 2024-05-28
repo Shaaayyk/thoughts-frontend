@@ -4,7 +4,7 @@ import { Segment, Header, Icon } from 'semantic-ui-react'
 export default function PageHeader({user, handleLogout}) {
   return (
     <>
-      <Segment clearing style={{height: '10vh'}} padded>
+      <Segment clearing style={{height: '70px'}} padded>
         <Header floated="left">
           <Link to='/'>
             <Icon name="home" color="black"></Icon>

@@ -28,7 +28,9 @@ export default function FeedPage({ user }) {
         thoughts.length ?
           thoughts.map(thought => (
             <div key={thought._id}>
-              <h3>{thought.title}</h3>
+              <Link to={`/thoughts/${thought._id}`}>
+                <h3>{thought.title}</h3>
+              </Link>
               <p>{thought.content}</p>
             </div>
           ))
